@@ -38,6 +38,25 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 Plug-in management
 */
 
+//here's the stuff from us:
+
+add_action( 'woocommerce_review_order_before_submit', 'bbloomer_add_checkout_newsletter', 9 );
+    
+function bbloomer_add_checkout_newsletter() {
+   
+woocommerce_form_field( 'newsletter', array(
+   'type'          => 'checkbox',
+   'class'         => array('form-row privacy'),
+   'label_class'   => array('woocommerce-form__label woocommerce-form__label-for-checkbox checkbox'),
+   'input_class'   => array('woocommerce-form__input woocommerce-form__input-checkbox input-checkbox'),
+   'required'      => false,
+   'label'         => '<span class="woocommerce-terms-and-conditions-checkbox-text">Ich möchte den hartmut.io Newsletter erhalten.</span>',
+)); 
+   
+}
+
+//here ends the stuff from us
+
 function mautic_woocommerce_add_settings_tab($settings_tabs) {
 //	authorize_mautic();
 	$settings_tabs['mautic'] = __( 'Mautic Integration', 'woo_mautic_integration' );
